@@ -1,0 +1,136 @@
+@import '';
+
+/* _content/Reservations/Shared/MainLayout.razor.rz.scp.css */
+.page[b-yzr32pj59s] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.main[b-yzr32pj59s] {
+    flex: 1;
+}
+
+.sidebar[b-yzr32pj59s] {
+    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+}
+
+.top-row[b-yzr32pj59s] {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #d6d5d5;
+    justify-content: flex-end;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+    .top-row[b-yzr32pj59s]  a, .top-row .btn-link[b-yzr32pj59s] {
+        white-space: nowrap;
+        margin-left: 1.5rem;
+    }
+
+    .top-row a:first-child[b-yzr32pj59s] {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+@media (max-width: 640.98px) {
+    .top-row:not(.auth)[b-yzr32pj59s] {
+        display: none;
+    }
+
+    .top-row.auth[b-yzr32pj59s] {
+        justify-content: space-between;
+    }
+
+    .top-row a[b-yzr32pj59s], .top-row .btn-link[b-yzr32pj59s] {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 641px) {
+    .page[b-yzr32pj59s] {
+        flex-direction: row;
+    }
+
+    .sidebar[b-yzr32pj59s] {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .top-row[b-yzr32pj59s] {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .main > div[b-yzr32pj59s] {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+/* _content/Reservations/Shared/NavMenu.razor.rz.scp.css */
+.navbar-toggler[b-b0vcc8xp8c] {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.top-row[b-b0vcc8xp8c] {
+    height: 3.5rem;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.navbar-brand[b-b0vcc8xp8c] {
+    font-size: 1.1rem;
+}
+
+.oi[b-b0vcc8xp8c] {
+    width: 2rem;
+    font-size: 1.1rem;
+    vertical-align: text-top;
+    top: -2px;
+}
+
+.nav-item[b-b0vcc8xp8c] {
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+}
+
+    .nav-item:first-of-type[b-b0vcc8xp8c] {
+        padding-top: 1rem;
+    }
+
+    .nav-item:last-of-type[b-b0vcc8xp8c] {
+        padding-bottom: 1rem;
+    }
+
+    .nav-item[b-b0vcc8xp8c]  a {
+        color: #d7d7d7;
+        border-radius: 4px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+    }
+
+.nav-item[b-b0vcc8xp8c]  a.active {
+    background-color: rgba(255,255,255,0.25);
+    color: white;
+}
+
+.nav-item[b-b0vcc8xp8c]  a:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+}
+
+@media (min-width: 641px) {
+    .navbar-toggler[b-b0vcc8xp8c] {
+        display: none;
+    }
+
+    .collapse[b-b0vcc8xp8c] {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+    }
+}
