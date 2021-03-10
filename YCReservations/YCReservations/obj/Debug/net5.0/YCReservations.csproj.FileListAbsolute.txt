@@ -375,3 +375,8 @@ C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReserva
 C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\bin\Debug\net5.0\Pomelo.JsonObject.dll
 C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\obj\Debug\net5.0\Razor\Views\Admin\CreateRole.cshtml.g.cs
+C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\obj\Debug\net5.0\Razor\Views\Admin\Edit.cshtml.g.cs
+C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\obj\Debug\net5.0\Razor\Views\Admin\EditUsersRole.cshtml.g.cs
+C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\obj\Debug\net5.0\Razor\Views\Admin\ListRoles.cshtml.g.cs
+C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\obj\Debug\net5.0\Razor\Views\Admin\ListUsers.cshtml.g.cs
