@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -79,7 +80,10 @@ namespace YCReservations.Controllers
                 Users = new List<string>()
             };
 
-            foreach (AppUser user in userManager.Users)
+
+            var userList = await userManager.Users.ToListAsync();
+
+            foreach (AppUser user in userList)
             {
                 
                 if (await userManager.IsInRoleAsync(user, role.Name))
@@ -140,7 +144,9 @@ namespace YCReservations.Controllers
 
             List<EditUsersRoleViewModel> Models = new List<EditUsersRoleViewModel>();
 
-            foreach (AppUser user in userManager.Users)
+            var userList = await userManager.Users.ToListAsync();
+
+            foreach (AppUser user in userList)
             {
                 EditUsersRoleViewModel model = new EditUsersRoleViewModel()
                 {
