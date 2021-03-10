@@ -380,3 +380,5 @@ C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReserva
 C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\obj\Debug\net5.0\Razor\Views\Admin\EditUsersRole.cshtml.g.cs
 C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\obj\Debug\net5.0\Razor\Views\Admin\ListRoles.cshtml.g.cs
 C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\obj\Debug\net5.0\Razor\Views\Admin\ListUsers.cshtml.g.cs
+C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Google.dll

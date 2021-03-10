@@ -41,6 +41,18 @@ namespace YCReservations
             })
             .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
+
+             services.AddAuthentication()
+            .AddGoogle(options =>
+            {
+                options.ClientId = "70260823034-3kookvoa8ck6b6ansh9al3m7mvgs0702.apps.googleusercontent.com";
+                options.ClientSecret = "oYE3fTbXAaD-KeBTniqeox4i";
+            })
+            .AddFacebook(options =>
+            {
+                options.AppId = "248833896888615";
+                options.AppSecret = "3a80e559647d0beaa053146f6aaaba2c";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
