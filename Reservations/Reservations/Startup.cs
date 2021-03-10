@@ -30,6 +30,10 @@ namespace Reservations
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddDbContext<AppDbContext>(options => options.UseMySql(_configuration.GetConnectionString("defaultconnection")));
+
+            services.AddMvc(setupAction: options => options.EnableEndpointRouting = false)
+                    .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+
             services.AddDbContext<AppDbContext>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
@@ -54,9 +58,11 @@ namespace Reservations
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseMvcWithDefaultRoute();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
