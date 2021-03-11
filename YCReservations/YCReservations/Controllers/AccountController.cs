@@ -44,10 +44,10 @@ namespace YCReservations.Controllers
 
                 if (result.Succeeded)
                 {
-                    //if (User.IsInRole("Admin") && signInManager.IsSignedIn(User)) 
-                    //{
-                    //    return RedirectToAction(nameof(Index));
-                    //}
+                    if (User.IsInRole("Admin") && signInManager.IsSignedIn(User))
+                    {
+                        return RedirectToAction("ListUsers", "Admin");
+                    }
                     await signInManager.SignInAsync(user, isPersistent: false);
 
                     return RedirectToAction("Index", "Home");
@@ -57,7 +57,7 @@ namespace YCReservations.Controllers
                     ModelState.AddModelError("", error.Description);
                 }
             }
-            return View();
+            return View(model);
         }
 
         //private string GenerateUserName(string FirstName, string LastName)
@@ -181,6 +181,60 @@ namespace YCReservations.Controllers
 
                 return View("Error");
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditAccount(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                AppUser user = await userManager.FindByIdAsync(id);
+                if (user != null)
+                {
+                    EditAccountViewModel model = new EditAccountViewModel()
+                    {
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Email = user.Email,
+                        Id = user.Id,
+                        Password = user.PasswordHash,
+                        ConfirmPassword = user.PasswordHash
+                    };
+                    return View(model);
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> EditAccount(EditAccountViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user = await userManager.FindByIdAsync(model.Id);
+                if (user != null)
+                {
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    user.Email = model.Email;
+
+                    var PasswordHash = userManager.PasswordHasher.HashPassword(user, model.Password);
+                    user.PasswordHash = PasswordHash;
+
+
+                    IdentityResult result = await userManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    foreach (IdentityError error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+            }
+            return View(model);
         }
 
     }

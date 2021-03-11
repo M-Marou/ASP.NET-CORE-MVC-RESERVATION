@@ -1,0 +1,35 @@
+﻿@model YCReservations.Models.ViewModels.EditUsersViewModel
+
+@{
+
+    ViewBag.Title = "Edit Account";
+
+}
+
+<form class="mx-lg-auto mb-5 w-auto" asp-action="EditUser" asp-controller="Admin" method="post">
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label" asp-for="FirstName">First Name</label>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" placeholder="First name" asp-for="FirstName">
+            <span asp-validation-for="FirstName" hidden class="small text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label" asp-for="LastName">Last Name</label>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" placeholder="Last name" asp-for="LastName">
+            <span asp-validation-for="LastName" hidden class="small text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label" asp-for="Email">Email</label>
+        <div class="col-sm-12">
+            <input type="email" class="form-control" placeholder="Email" asp-for="Email">
+            <span asp-validation-for="Email" hidden class="small text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Update</button>
+    </div>
+    <div class="text text-danger" asp-validation-summary="All"></div>
+</form>

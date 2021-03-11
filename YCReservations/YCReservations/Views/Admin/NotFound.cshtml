@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Not Found";
+}
+
+<div class="jumbotron my-5">
+    <h1 class="display-5 text-danger">@ViewBag.ErrorMessage</h1>
+    <hr class="my-4" />
+    <a asp-action="listroles" asp-controller="Admin">
+        Click here to return to list roles
+    </a>
+</div>

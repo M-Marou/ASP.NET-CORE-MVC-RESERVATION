@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,6 +11,7 @@ using YCReservations.Models.ViewModels;
 
 namespace YCReservations.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
@@ -215,6 +217,83 @@ namespace YCReservations.Controllers
         {
             var users = userManager.Users.Where(u => u.Email != User.Identity.Name);
             return View(users);
+        }
+
+        //[HttpGet]
+        //public IActionResult DeleteUser()
+        //{
+        //    return RedirectToAction("ListUsers");
+        //}
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var user = await userManager.FindByIdAsync(id);
+            //if (user is null)
+            //{
+
+            //    return View("../Errors/NotFound", $"The user Id : {id} cannot be found");
+            //}
+
+            var result = await userManager.DeleteAsync(user);
+
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+            }
+            return RedirectToAction("ListUsers", "Admin");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditUser(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                AppUser user = await userManager.FindByIdAsync(id);
+                if (user != null)
+                {
+                    EditUsersViewModel model = new EditUsersViewModel()
+                    {
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Email = user.Email,
+                        Id = user.Id
+                    };
+                    return View(model);
+                }
+            }
+            return RedirectToAction("ListUsers", "Admin");
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> EditUser(EditUsersViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user = await userManager.FindByIdAsync(model.Id);
+                if (user != null)
+                {
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    user.Email = model.Email;
+
+                    IdentityResult result = await userManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("ListUsers", "Admin");
+                    }
+                    foreach (IdentityError error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+            }
+            return View(model);
         }
     }
 }
