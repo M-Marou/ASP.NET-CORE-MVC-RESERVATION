@@ -17,6 +17,7 @@ namespace YCReservations.Models
         }
 
         public DbSet<Reservations> Reservations { get; set; }
+        public DbSet<ReservationType> ReservationType { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
