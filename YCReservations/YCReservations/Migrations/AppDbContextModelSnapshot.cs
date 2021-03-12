@@ -241,10 +241,11 @@ namespace YCReservations.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("ReservationTypeTypeId")
+                    b.Property<int>("ReservationTypeId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Status")
+                    b.Property<bool?>("Status")
+                        .IsRequired()
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("UserId")
@@ -252,7 +253,7 @@ namespace YCReservations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ReservationTypeTypeId");
+                    b.HasIndex("ReservationTypeId");
 
                     b.HasIndex("UserId");
 
@@ -314,7 +315,9 @@ namespace YCReservations.Migrations
                 {
                     b.HasOne("YCReservations.Models.ReservationType", "ReservationType")
                         .WithMany("Reservations")
-                        .HasForeignKey("ReservationTypeTypeId");
+                        .HasForeignKey("ReservationTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("YCReservations.Models.AppUser", "User")
                         .WithMany()

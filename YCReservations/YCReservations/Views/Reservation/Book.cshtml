@@ -1,0 +1,43 @@
+﻿@model YCReservations.Models.Reservations
+
+@{
+    ViewBag.Title = "Reservation";
+}
+
+@*<h1>TESTING</h1>*@
+
+<div class="col-md-4">
+    <form class="x-lg-auto mb-5 w-auto" asp-action="Book">
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <label asp-for="Date"></label>
+                <input id="DateId" type='datetime' class="form-control text-center" placeholder="DD MMM, YYYY" readonly="readonly" />
+                <span asp-validation-for="Date" hidden class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <label asp-for="ReservationTypeId" class="control-label"></label>
+                <select asp-for="ReservationTypeId" class="form-control" asp-items="@ViewBag.ReservationTypeId"></select>
+                <span asp-validation-for="ReservationTypeId" class="text-danger"></span>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section DPdatepicker{
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script>
+        $(function () {
+            $('#DateId').daterangepicker(
+                {
+                    "singleDatePicker": true,
+                    "startDate": moment(),
+                    "endDate": moment().endOf('year'),
+                    "opens": "center"
+                });
+        });
+    </script>
+}

@@ -13,11 +13,13 @@ namespace YCReservations.Models
         [Key]
         public int TypeId { get; set; }
 
+        [Required(ErrorMessage = "Please Select a type of reservation")]
+        [Display(Name = "Select Type")]
         public string ResType { get; set; } 
 
         public int NumberOfPeople { get; set; }
 
-        public virtual ICollection<Reservations> Reservations { get; set; }
+        public ICollection<Reservations> Reservations { get; set; }
     }
 }
 

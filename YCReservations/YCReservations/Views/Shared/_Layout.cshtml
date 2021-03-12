@@ -7,12 +7,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Description" content="YouCode Reservations">
     <title>@ViewData["Title"] - YouCode</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="~/lib/datatables/css/jquery.dataTables.css" rel="stylesheet" />
     <script src="~/lib/datatables/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 <body>
     <header>
@@ -31,6 +33,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" data-toggle="dropdown" href="#" role="button">Reservation</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-action="Book" asp-controller="Reservation">Book</a>
+                                <a class="dropdown-item" asp-action="Book" asp-controller="Reservation">Reservations</a>
+                            </div>
+                        </li>
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item dropdown">
@@ -41,7 +50,7 @@
                                 </div>
                             </li>
                         }
-                        </ul>
+                    </ul>
                     <ul class="navbar-nav ml-auto">
                         @if (SignInManager.IsSignedIn(User))
                         {
@@ -82,24 +91,26 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-white text-center bg-primary";>
-            <div class="container">
-                &copy; 2021 - YouCode Reservations - <a href="https://youcode.ma" class="text-dark" >YouCode</a>
-            </div>
+    <footer class="border-top footer text-white text-center bg-primary" ;>
+        <div class="container">
+            &copy; 2021 - YouCode Reservations - <a href="https://youcode.ma" class="text-dark">YouCode</a>
+        </div>
         @*<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-         © 2020 Copyright:
-        <a class="text-white" href="https://youcode.ma">YouCode</a>
-        </div>*@
+             © 2020 Copyright:
+            <a class="text-white" href="https://youcode.ma">YouCode</a>
+            </div>*@
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/datatables/js/jquery.dataTables.js"></script>
-    @RenderSection(name: "DTListUsers", required: false);
+
+    @RenderSection(name: "DTListUsers", required: false)
+
+    @RenderSection(name: "DPdatepicker", required: false)
 
     @await RenderSectionAsync("Scripts", required: false)
-
 
 
 </body>

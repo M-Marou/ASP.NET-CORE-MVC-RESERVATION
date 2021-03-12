@@ -17,11 +17,14 @@ namespace YCReservations.Models
         public DateTime Date { get; set; }
 
         [Required]
-        public Boolean Status { get; set; }
+        public Boolean? Status { get; set; }
 
         public string UserId { get; set; }
         public AppUser User { get; set; }
 
+        [Required(ErrorMessage = "Please Select a type of reservation")]
+        [Display(Name = "Select Type")]
+        public int ReservationTypeId { set; get; }
         public virtual ReservationType ReservationType { get; set; }
     }
 }

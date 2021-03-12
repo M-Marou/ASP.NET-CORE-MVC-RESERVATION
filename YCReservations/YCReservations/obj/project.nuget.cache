@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "2+zm76rl8BpqAIRa/wgeNh622WXjTFgkBKjnLs1md3qhG/5KgQP+mKIH9rr+GMWVR/dtieaVS/k9n3A6JQzqOQ==",
+  "dgSpecHash": "cHSbGehhI5rMrYkk16qIRvzsm2+B+EiPEu1CTk7X7rowdkSH1EViu5/KtdJQZhilRpyYSfr/c4zDfmJeIAieUQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\msckt\\OneDrive\\Bureau\\ASP.NET-CORE-RESERVATION\\YCReservations\\YCReservations\\YCReservations.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\msckt\\.nuget\\packages\\jquery\\1.12.4\\jquery.1.12.4.nupkg.sha512",
+    "C:\\Users\\msckt\\.nuget\\packages\\jquery.ui.combined\\1.12.1\\jquery.ui.combined.1.12.1.nupkg.sha512",
     "C:\\Users\\msckt\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\5.0.4\\microsoft.aspnetcore.authentication.facebook.5.0.4.nupkg.sha512",
     "C:\\Users\\msckt\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\5.0.4\\microsoft.aspnetcore.authentication.google.5.0.4.nupkg.sha512",
     "C:\\Users\\msckt\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.3\\microsoft.aspnetcore.cryptography.internal.3.1.3.nupkg.sha512",
