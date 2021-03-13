@@ -33,13 +33,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" data-toggle="dropdown" href="#" role="button">Reservation</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-action="Book" asp-controller="Reservation">Book</a>
-                                <a class="dropdown-item" asp-action="Book" asp-controller="Reservation">Reservations</a>
-                            </div>
-                        </li>
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin") || User.IsInRole("Learner"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" data-toggle="dropdown" href="#" role="button">Reservation</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-action="Book" asp-controller="Reservation">Book</a>
+                                    <a class="dropdown-item" asp-action="MyReservations" asp-controller="Reservation">Reservations</a>
+                                </div>
+                            </li>
+                        }
+
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item dropdown">
@@ -107,6 +111,8 @@
     <script src="~/lib/datatables/js/jquery.dataTables.js"></script>
 
     @RenderSection(name: "DTListUsers", required: false)
+
+    @RenderSection(name: "DTReservationsList", required: false)
 
     @RenderSection(name: "DPdatepicker", required: false)
 

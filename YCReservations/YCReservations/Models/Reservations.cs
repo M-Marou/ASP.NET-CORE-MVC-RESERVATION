@@ -13,12 +13,14 @@ namespace YCReservations.Models
         [Key]
         public int Id { get; set; }
 
+        public string FormattedDate => Date.ToShortDateString();
+
         [Required]
         public DateTime Date { get; set; }
 
-        [Required]
         public Boolean? Status { get; set; }
 
+        [Required(ErrorMessage ="There is no user id selected")]
         public string UserId { get; set; }
         public AppUser User { get; set; }
 

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Reservations>
+
+@{
+    int counter = 1;
+    ViewBag.Title = "List of reservations";
+}
+
+<div class="my-5 text-left">
+    <h2> List of Users </h2>
+    <hr />
+</div>
+
+<div class="my-5">
+    <table id="myTable" class="table">
+        <thead class="thead-dark table-hover table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">@Html.DisplayNameFor(item => item.Date)</th>
+                <th scope="col">@Html.DisplayNameFor(item => item.Status)</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Reservations user in Model)
+            {
+                <tr>
+                    <td>@counter</td>
+                    <td>@user.Date.ToShortDateString()</td>
+                    <td>@user.Status</td>
+
+                    <td>
+                        <form method="post" >
+                            <a class="btn btn-primary text-white mx-2 btn-sm w-50" asp-action="EditUser" asp-controller="Admin" asp-route-id="@user.Id">Update</a>
+                            <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure would you like to delete this user!')">Delete</button>
+                        </form>
+
+                    </td>
+                </tr>
+                counter++;
+            }
+        </tbody>
+    </table>
+
+    <div class="my-5 text-center">
+        <a asp-action="Book" asp-controller="Reservation">Make new reservation</a> |
+        <a asp-action="index" asp-controller="Home">Back to Home</a>
+    </div>
+
+</div>
+
+@section DTReservationsList {
+    <script>
+        $(document).ready(function () {
+            $('#myTable').dataTable();
+        });
+    </script>
+}
