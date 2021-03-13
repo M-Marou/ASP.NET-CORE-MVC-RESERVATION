@@ -13,8 +13,6 @@ namespace YCReservations.Models
         [Key]
         public int Id { get; set; }
 
-        public string FormattedDate => Date.ToShortDateString();
-
         [Required]
         public DateTime Date { get; set; }
 

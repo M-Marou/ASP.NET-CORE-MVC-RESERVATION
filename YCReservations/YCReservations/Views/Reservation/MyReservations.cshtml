@@ -6,7 +6,7 @@
 }
 
 <div class="my-5 text-left">
-    <h2> List of Users </h2>
+    <h2> List of Reservations </h2>
     <hr />
 </div>
 
@@ -17,23 +17,32 @@
                 <th scope="col">#</th>
                 <th scope="col">@Html.DisplayNameFor(item => item.Date)</th>
                 <th scope="col">@Html.DisplayNameFor(item => item.Status)</th>
+                <th scope="col">@Html.DisplayNameFor(item => item.User)</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (Reservations user in Model)
+            @foreach (Reservations reservation in Model)
             {
                 <tr>
                     <td>@counter</td>
-                    <td>@user.Date.ToShortDateString()</td>
-                    <td>@user.Status</td>
-
-                    <td>
-                        <form method="post" >
-                            <a class="btn btn-primary text-white mx-2 btn-sm w-50" asp-action="EditUser" asp-controller="Admin" asp-route-id="@user.Id">Update</a>
-                            <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure would you like to delete this user!')">Delete</button>
+                    <td>@reservation.Date.ToShortDateString()</td>
+                    @if (reservation.Status == null)
+                    {
+                        <td class="text-muted">Pending</td>
+                    } else if (reservation.Status == true) {
+                        <td class="text-success">Approved</td>
+                    } else 
+                    { 
+                        <td class="text-danger">Rejected</td>
+                    }
+                    <td>@reservation.UserId</td>
+                    <td style="width: 200px;">
+                        <form method="post">
+                            <button class="btn btn-success btn-sm">Approve</button>
+                            <button class="btn btn-danger btn-sm">Reject</button>
+                            <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure would you like to delete this reservation!')">Delete</button>
                         </form>
-
                     </td>
                 </tr>
                 counter++;

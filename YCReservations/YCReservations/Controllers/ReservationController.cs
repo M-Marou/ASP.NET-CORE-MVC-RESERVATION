@@ -53,5 +53,11 @@ namespace YCReservations.Controllers
             var MyRes = _context.Reservations;
             return View(MyRes);
         }
+
+        [HttpPost]
+        public IActionResult Approve(Reservations model)
+        {
+            return View(model);
+        }
     }
 }
