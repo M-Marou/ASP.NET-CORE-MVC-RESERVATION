@@ -34,13 +34,14 @@
                         <td class="text-success">Approved</td>
                     } else 
                     { 
-                        <td class="text-danger">Rejected</td>
+                        <td class="text-danger">Declined</td>
                     }
+                    
                     <td>@reservation.UserId</td>
-                    <td style="width: 200px;">
-                        <form method="post">
-                            <button class="btn btn-success btn-sm">Approve</button>
-                            <button class="btn btn-danger btn-sm">Reject</button>
+                    <td style="width: 210px;">
+                        <form method="post" asp-action="Delete" asp-route-id="@reservation.Id">
+                            <button asp-action="Approve" asp-route-id="@reservation.Id" type="submit" value="1" class="btn btn-success btn-sm">Approve</button>
+                            <button asp-action="Declined" asp-route-id="@reservation.Id" class="btn btn-danger btn-sm">Decline</button>
                             <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure would you like to delete this reservation!')">Delete</button>
                         </form>
                     </td>

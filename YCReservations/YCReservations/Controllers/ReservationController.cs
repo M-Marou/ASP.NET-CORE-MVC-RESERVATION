@@ -41,23 +41,52 @@ namespace YCReservations.Controllers
             {
                 _context.Add(Reservation);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ManageReservations", "Reservation");
             }
             ViewData["ReservationTypeId"] = new SelectList(_context.ReservationType, "TypeId", "ResType", Reservation.ReservationTypeId);
             return View(Reservation);
         }
 
         [HttpGet]
-        public IActionResult MyReservations()
+        public IActionResult ManageReservations()
         {
             var MyRes = _context.Reservations;
             return View(MyRes);
         }
 
         [HttpPost]
-        public IActionResult Approve(Reservations model)
+        public IActionResult Delete(int id)
         {
-            return View(model);
+            var reservation = _context.Reservations.Where(r => r.Id == id).FirstOrDefault();
+            _context.Reservations.Remove(reservation);
+            _context.SaveChanges();
+            return RedirectToAction("ManageReservations", "Reservation");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Approve(int id)
+        {
+            var reservation = _context.Reservations.Where(r => r.Id == id).FirstOrDefault();
+            reservation.Status = true;
+            if (ModelState.IsValid)
+            {
+                await _context.SaveChangesAsync();
+                return RedirectToAction("ManageReservations", "Reservation");
+            }
+            return View(reservation);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Declined(int id)
+        {
+            var reservation = _context.Reservations.Where(r => r.Id == id).FirstOrDefault();
+            reservation.Status = false;
+            if (ModelState.IsValid)
+            {
+                await _context.SaveChangesAsync();
+                return RedirectToAction("ManageReservations", "Reservation");
+            }
+            return View(reservation);
         }
     }
 }
