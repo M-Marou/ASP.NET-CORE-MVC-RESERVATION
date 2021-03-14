@@ -41,12 +41,20 @@ namespace YCReservations.Controllers
             {
                 _context.Add(Reservation);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("ManageReservations", "Reservation");
+                if (User.IsInRole("Learner"))
+                {
+                    return RedirectToAction("MyReservations", "Reservation");
+                } else if (User.IsInRole("Admin"))
+                {
+                    return RedirectToAction("ManageReservations", "Reservation");
+                }
+                
             }
             ViewData["ReservationTypeId"] = new SelectList(_context.ReservationType, "TypeId", "ResType", Reservation.ReservationTypeId);
             return View(Reservation);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult ManageReservations()
         {
@@ -77,7 +85,7 @@ namespace YCReservations.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Declined(int id)
+        public async Task<IActionResult> Decline(int id)
         {
             var reservation = _context.Reservations.Where(r => r.Id == id).FirstOrDefault();
             reservation.Status = false;
@@ -87,6 +95,13 @@ namespace YCReservations.Controllers
                 return RedirectToAction("ManageReservations", "Reservation");
             }
             return View(reservation);
+        }
+
+        [HttpGet]
+        public IActionResult MyReservations(Reservations model)
+        {
+            var current = _context.Users.Single(u => u.Email == User.Identity.Name);
+            return View(_context.Reservations.Where(u => u.UserId == current.Id).ToList());
         }
     }
 }

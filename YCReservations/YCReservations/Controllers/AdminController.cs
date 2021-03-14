@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,13 @@ namespace YCReservations.Controllers
     {
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<AppUser> userManager;
+        private readonly ILogger<AdminController> logger;
 
-        public AdminController(RoleManager<IdentityRole> roleManager, UserManager<AppUser> userManager)
+        public AdminController(RoleManager<IdentityRole> roleManager, UserManager<AppUser> userManager, ILogger<AdminController> logger)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
+            this.logger = logger;
         }
         [HttpGet]
         public ActionResult CreateRole()
@@ -57,6 +60,26 @@ namespace YCReservations.Controllers
             var roles = roleManager.Roles;
             return View(roles);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+            IdentityRole role = await roleManager.FindByIdAsync(id);
+                if (!(role is null))
+                {
+                    IdentityResult result = await roleManager.DeleteAsync(role);
+
+                    if (!result.Succeeded)
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
+                    }
+                }
+                return RedirectToAction("ListRoles", "Admin");
+        }
+
 
         [HttpGet]
         public async Task<ActionResult> Edit(string id)
@@ -232,7 +255,7 @@ namespace YCReservations.Controllers
             //if (user is null)
             //{
 
-            //    return View("../Errors/NotFound", $"The user Id : {id} cannot be found");
+            //    return View("/NotFound", $"The user Id : {id} cannot be found");
             //}
 
             var result = await userManager.DeleteAsync(user);

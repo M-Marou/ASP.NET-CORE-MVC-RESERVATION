@@ -389,3 +389,5 @@ C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReserva
 C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\obj\Debug\net5.0\Razor\Views\Admin\EditUser.cshtml.g.cs
 C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\obj\Debug\net5.0\Razor\Views\Reservation\Book.cshtml.g.cs
 C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\obj\Debug\net5.0\Razor\Views\Reservation\ManageReservations.cshtml.g.cs
+C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\obj\Debug\net5.0\Razor\Views\Account\AccessDenied.cshtml.g.cs
+C:\Users\msckt\OneDrive\Bureau\ASP.NET-CORE-RESERVATION\YCReservations\YCReservations\obj\Debug\net5.0\Razor\Views\Reservation\MyReservations.cshtml.g.cs

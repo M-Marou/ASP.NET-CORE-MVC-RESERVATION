@@ -60,6 +60,12 @@ namespace YCReservations.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
         //private string GenerateUserName(string FirstName, string LastName)
         //{
         //    return FirstName.Trim().ToUpper() + "_" + LastName.Trim().ToLower();

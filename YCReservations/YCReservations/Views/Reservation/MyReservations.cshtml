@@ -2,11 +2,11 @@
 
 @{
     int counter = 1;
-    ViewBag.Title = "List of reservations";
+    ViewBag.Title = "My Reservations List";
 }
 
 <div class="my-5 text-left">
-    <h2> List of Reservations </h2>
+    <h2> My Reservations </h2>
     <hr />
 </div>
 
@@ -18,8 +18,7 @@
                 <th scope="col">@Html.DisplayNameFor(item => item.Date)</th>
                 <th scope="col">@Html.DisplayNameFor(item => item.ReservationTypeId)</th>
                 <th scope="col">@Html.DisplayNameFor(item => item.Status)</th>
-                <th scope="col">@Html.DisplayNameFor(item => item.User)</th>
-                <th scope="col">Actions</th>
+                @*<th scope="col">@Html.DisplayNameFor(item => item.User)</th>*@
             </tr>
         </thead>
         <tbody>
@@ -28,7 +27,6 @@
             <tr>
                 <td>@counter</td>
                 <td>@reservation.Date.ToShortDateString()</td>
-
                 @if (reservation.ReservationTypeId == 3)
                 {
                     <td>Week-End</td>
@@ -55,16 +53,7 @@
                     <td class="text-danger">Declined</td>
                 }
 
-                <td>@reservation.UserId</td>
-
-
-                <td style="width: 210px;">
-                    <form method="post" asp-action="Delete" asp-route-id="@reservation.Id">
-                        <button asp-action="Approve" asp-route-id="@reservation.Id" type="submit" value="1" class="btn btn-success btn-sm">Approve</button>
-                        <button asp-action="Decline" asp-route-id="@reservation.Id" class="btn btn-danger btn-sm">Decline</button>
-                        <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure would you like to delete this reservation!')">Delete</button>
-                    </form>
-                </td>
+                @*<td>@reservation.UserId</td>*@
             </tr>
                 counter++;
             }
