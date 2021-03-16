@@ -1,8 +1,32 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>This website has been made specially for <a href="https://youcode.ma/">YouCode</a> learners <br> to access the establishment.</p>
+@*<div class="text-center" style="margin-top:300px">
+        <h1 class="display-4">Welcome</h1>
+        <p>This website has been made specially for <a href="https://youcode.ma/">YouCode</a> learners <br> to book for an access to the establishment.</p>
+    </div>*@
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="text-center" style="margin-top:430px; z-index:1000;">
+        <a type="button" class="btn btn-outline-primary" asp-action="Book" asp-controller="Reservation" >MAKE A RESERVATION</a>
+    </div>
+}
+<div class="content" style="z-index: -1000;" >
+    <div class="content__container">
+        <p class="content__container__text">
+            Hello
+        </p>
+
+        <ul class="content__container__list">
+            <li class="content__container__list__item">world !</li>
+            <li class="content__container__list__item">YouCoders !</li>
+            <li class="content__container__list__item">users !</li>
+            <li class="content__container__list__item">everybody !</li>
+        </ul>
+    </div>
 </div>
+

@@ -24,7 +24,7 @@ namespace YCReservations.Models
         public AppUser User { get; set; }
 
         [Required(ErrorMessage = "Please Select a type of reservation")]
-        [Display(Name = "Select Type")]
+        [Display(Name = "Type")]
         public int ReservationTypeId { set; get; }
         public virtual ReservationType ReservationType { get; set; }
     }

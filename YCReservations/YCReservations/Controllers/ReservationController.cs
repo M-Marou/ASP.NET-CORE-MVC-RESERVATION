@@ -61,14 +61,6 @@ namespace YCReservations.Controllers
         {
             //var MyRes = _context.Reservations;
             //return View(MyRes);
-
-            //var MyRes = _context.Reservations
-            //    .Join(_context.Users,
-            //        User => User.UserId,
-
-            //    )
-
-            //var MyRes = _context.Reservations.Include("UserName").ToList();
             var MyRes = (from r in _context.Reservations
                          join u in _context.Users
                          on r.UserId equals u.Id
