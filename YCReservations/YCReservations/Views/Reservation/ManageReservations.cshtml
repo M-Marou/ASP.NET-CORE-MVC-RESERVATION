@@ -19,6 +19,7 @@
                 <th scope="col">@Html.DisplayNameFor(item => item.ReservationTypeId)</th>
                 <th scope="col">@Html.DisplayNameFor(item => item.Status)</th>
                 <th scope="col">@Html.DisplayNameFor(item => item.User)</th>
+                @*<th>User</th>*@
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -55,7 +56,7 @@
                     <td class="text-danger">Declined</td>
                 }
 
-                <td>@reservation.UserId</td>
+               <td>@reservation.UserName</td>
 
 
                 <td style="width: 210px;">
