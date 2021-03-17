@@ -59,21 +59,21 @@ namespace YCReservations.Controllers
         [HttpGet]
         public IActionResult ManageReservations()
         {
-            //var MyRes = _context.Reservations;
+            var MyRes = _context.Reservations.Include(u => u.User);
             //return View(MyRes);
-            var MyRes = (from r in _context.Reservations
-                         join u in _context.Users
-                         on r.UserId equals u.Id
-                         join t in _context.ReservationType on r.ReservationTypeId equals t.TypeId
-                         //where u.UserName == User.Identity.Name
-                         select new Reservations {
-                            Id = r.Id,
-                            Date = r.Date,
-                            ReservationTypeId = r.ReservationTypeId,
-                            Status = r.Status,
-                            UserId = r.UserId,
-                            UserName = u.UserName
-                         }).ToList();
+            //var MyRes = (from r in _context.Reservations
+            //             join u in _context.Users
+            //             on r.UserId equals u.Id
+            //             join t in _context.ReservationType on r.ReservationTypeId equals t.TypeId
+            //             //where u.UserName == User.Identity.Name
+            //             select new Reservations {
+            //                Id = r.Id,
+            //                Date = r.Date,
+            //                ReservationTypeId = r.ReservationTypeId,
+            //                Status = r.Status,
+            //                UserId = r.UserId,
+            //                UserName = u.UserName
+            //             }).ToList();
             return View(MyRes);
         }
 

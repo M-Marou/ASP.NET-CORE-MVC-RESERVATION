@@ -2,11 +2,11 @@
 
 @{
     int counter = 1;
-    ViewBag.Title = "List of reservations";
+    ViewBag.Title = "ADMIN || RESERVATIONS";
 }
 
 <div class="my-5 text-left">
-    <h2> List of Reservations </h2>
+    <h3> MANAGE RESERVATIONS </h3>
     <hr />
 </div>
 
@@ -56,7 +56,7 @@
                     <td class="text-danger">Declined</td>
                 }
 
-               <td>@reservation.UserName</td>
+               <td>@reservation.User.FirstName @reservation.User.LastName</td>
 
 
                 <td style="width: 210px;">

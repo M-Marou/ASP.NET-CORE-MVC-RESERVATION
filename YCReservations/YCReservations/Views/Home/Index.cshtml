@@ -9,13 +9,7 @@
         <h1 class="display-4">Welcome</h1>
         <p>This website has been made specially for <a href="https://youcode.ma/">YouCode</a> learners <br> to book for an access to the establishment.</p>
     </div>*@
-@if (SignInManager.IsSignedIn(User))
-{
-    <div class="text-center" style="margin-top:430px; z-index:1000;">
-        <a type="button" class="btn btn-outline-primary" asp-action="Book" asp-controller="Reservation" >MAKE A RESERVATION</a>
-    </div>
-}
-<div class="content" style="z-index: -1000;" >
+<div class="content" style="z-index: -1000;">
     <div class="content__container">
         <p class="content__container__text">
             Hello
@@ -28,5 +22,18 @@
             <li class="content__container__list__item">everybody !</li>
         </ul>
     </div>
+    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Learner"))
+    {
+        <div class="text-center" style="margin-top:20px; z-index:1000;">
+            <a type="button" class="btn btn-outline-primary" asp-action="Book" asp-controller="Reservation">MAKE A RESERVATION</a>
+        </div>
+    }
+    else if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+    {
+        <div class="text-center" style="margin-top:20px; z-index:1000;">
+            <a type="button" class="btn btn-outline-primary" asp-action="ManageReservations" asp-controller="Reservation">MANAGE RESERVATIONS</a>
+        </div>
+    }
+    
 </div>
 

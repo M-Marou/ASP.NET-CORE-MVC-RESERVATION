@@ -1,38 +1,44 @@
 ﻿@model YCReservations.Models.Reservations
 
 @{
-    ViewBag.Title = "Reservation";
+    ViewBag.Title = "MAKE A RESERVATION";
 }
 
-<h2>Make A Reservation</h2>
-<hr />
+@*<h3 class="py-5">MAKE A RESERVATION</h3>*@
+@*<hr />*@
 
-<div class="col-md-4">
-    <form class="x-lg-auto mb-5 w-auto" asp-controller="Reservation" asp-action="Book" method="post">
-        <div class="col-sm-12" hidden>
-            <label asp-for="UserId" class="control-label"></label>
-            <input asp-for="UserId" class="form-control" asp-items="@ViewBag.UserId" value="@ViewBag.UserId" />
-            <span asp-validation-for="UserId" hidden class="text-danger"></span>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-12">
-                <label asp-for="Date"></label>
-                <input id="DateId" type='datetime' class="form-control text-center" asp-for="Date" placeholder="DD MMM, YYYY" readonly="readonly" />
-                <span asp-validation-for="Date" hidden class="text-danger"></span>
+<div class="card" style="margin-top:100px;">
+    @*<div class="card-header font-weight-bold">
+        RESERVATION FORM
+    </div>*@
+    <div class="card-body">
+        <img src="~/Img/IMG_4262.png" class="card-img-bottom">
+        <form asp-controller="Reservation" asp-action="Book" method="post" style="padding-top:20px;">
+            <div class="form-row">
+                <div class="form-group col-md-6" hidden>
+                    <label asp-for="UserId" class="control-label"></label>
+                    <input asp-for="UserId" class="form-control" asp-items="@ViewBag.UserId" value="@ViewBag.UserId" />
+                    <span asp-validation-for="UserId" hidden class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Date">Date :</label>
+                    <input id="DateId" type='datetime' class="form-control text-center" asp-for="Date" placeholder="DD MMM, YYYY" readonly="readonly" />
+                    <small id="emailHelp" class="form-text text-muted">Please make sure you've selected the proper date.</small>
+                    <span asp-validation-for="Date" hidden class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="ReservationTypeId"> Select :</label>
+                    <select asp-for="ReservationTypeId" class="form-control" asp-items="@ViewBag.ReservationTypeId"></select>
+                    <small id="emailHelp" class="form-text text-muted">Select your desired type of reservation.</small>
+                    <span asp-validation-for="ReservationTypeId" hidden class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-outline-primary">BOOK NOW</button>
+                </div>
+                <div class="text text-danger" asp-validation-summary="All"></div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-12">
-                <label asp-for="ReservationTypeId" class="control-label"></label>
-                <select asp-for="ReservationTypeId" class="form-control" asp-items="@ViewBag.ReservationTypeId"></select>
-                <span asp-validation-for="ReservationTypeId" hidden class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Book</button>
-        </div>
-        <div class="text text-danger" asp-validation-summary="All"></div>
-    </form>
+        </form>
+    </div>
 </div>
 
 @section DPdatepicker{
@@ -46,7 +52,8 @@
                     "singleDatePicker": true,
                     "startDate": moment(),
                     "endDate": moment().endOf('year'),
-                    "opens": "center"
+                    "opens": "center",
+                    minDate: new Date()
                 });
         });
     </script>
