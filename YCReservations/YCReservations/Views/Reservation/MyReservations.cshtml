@@ -27,18 +27,7 @@
             <tr>
                 <td>@counter</td>
                 <td>@reservation.Date.ToShortDateString()</td>
-                @if (reservation.ReservationTypeId == 3)
-                {
-                    <td>Week-End</td>
-                }
-                else if (reservation.ReservationTypeId == 2)
-                {
-                    <td>Evening</td>
-                }
-                else
-                {
-                    <td>Day</td>
-                }
+                <td>@reservation.ReservationType.ResType</td>
 
                 @if (reservation.Status == null)
                 {

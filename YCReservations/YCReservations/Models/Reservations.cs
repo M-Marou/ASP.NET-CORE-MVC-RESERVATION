@@ -20,7 +20,6 @@ namespace YCReservations.Models
 
         [Required(ErrorMessage ="There is no user id selected")]
         public string UserId { get; set; }
-        public string UserName { get; set; }
         public AppUser User { get; set; }
 
         [Required(ErrorMessage = "Please Select a type of reservation")]

@@ -59,22 +59,8 @@ namespace YCReservations.Controllers
         [HttpGet]
         public IActionResult ManageReservations()
         {
-            var MyRes = _context.Reservations.Include(u => u.User);
-            //return View(MyRes);
-            //var MyRes = (from r in _context.Reservations
-            //             join u in _context.Users
-            //             on r.UserId equals u.Id
-            //             join t in _context.ReservationType on r.ReservationTypeId equals t.TypeId
-            //             //where u.UserName == User.Identity.Name
-            //             select new Reservations {
-            //                Id = r.Id,
-            //                Date = r.Date,
-            //                ReservationTypeId = r.ReservationTypeId,
-            //                Status = r.Status,
-            //                UserId = r.UserId,
-            //                UserName = u.UserName
-            //             }).ToList();
-            return View(MyRes);
+            var MyRes = _context.Reservations.Include(u => u.User).Include(t => t.ReservationType);
+            return View(MyRes.OrderBy(o => o.Id));
         }
 
         [HttpPost]
@@ -90,11 +76,21 @@ namespace YCReservations.Controllers
         public async Task<IActionResult> Approve(int id)
         {
             var reservation = _context.Reservations.Where(r => r.Id == id).FirstOrDefault();
-            reservation.Status = true;
+            AppUser user = await userManager.FindByIdAsync(reservation.UserId);          
             if (ModelState.IsValid)
             {
+                if(reservation.Status == false || reservation.Status == null)
+                {
+                user.NOR++;
+                reservation.Status = true;
                 await _context.SaveChangesAsync();
                 return RedirectToAction("ManageReservations", "Reservation");
+                } else
+                {
+                    reservation.Status = true;
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("ManageReservations", "Reservation");
+                }
             }
             return View(reservation);
         }
@@ -103,11 +99,22 @@ namespace YCReservations.Controllers
         public async Task<IActionResult> Decline(int id)
         {
             var reservation = _context.Reservations.Where(r => r.Id == id).FirstOrDefault();
-            reservation.Status = false;
+            AppUser user = await userManager.FindByIdAsync(reservation.UserId);
             if (ModelState.IsValid)
             {
-                await _context.SaveChangesAsync();
-                return RedirectToAction("ManageReservations", "Reservation");
+                if (reservation.Status == true)
+                {
+                    user.NOR--;
+                    reservation.Status = false;
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("ManageReservations", "Reservation");
+                }
+                else
+                {
+                    reservation.Status = false;
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("ManageReservations", "Reservation");
+                }
             }
             return View(reservation);
         }
@@ -116,7 +123,8 @@ namespace YCReservations.Controllers
         public IActionResult MyReservations()
         {
             var current = _context.Users.Single(u => u.Email == User.Identity.Name);
-            return View(_context.Reservations.Where(u => u.UserId == current.Id).ToList());
+            var MyRes = _context.Reservations.Where(u => u.UserId == current.Id).Include(t => t.ReservationType).ToList();
+            return View(MyRes.OrderBy(o => o.Id));
         }
     }
 }

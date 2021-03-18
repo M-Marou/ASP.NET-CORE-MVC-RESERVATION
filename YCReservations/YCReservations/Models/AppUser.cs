@@ -8,8 +8,9 @@ namespace YCReservations.Models
 {
     public class AppUser : IdentityUser
     {
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int NOR { get; set; }
         //public IList<Reservations> UserReservations { get; set; }
     }
 }
