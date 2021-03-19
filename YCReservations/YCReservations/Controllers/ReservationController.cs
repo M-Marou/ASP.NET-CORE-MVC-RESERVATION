@@ -60,7 +60,7 @@ namespace YCReservations.Controllers
         public IActionResult ManageReservations()
         {
             var MyRes = _context.Reservations.Include(u => u.User).Include(t => t.ReservationType);
-            return View(MyRes.OrderBy(o => o.Id));
+            return View(MyRes.OrderByDescending(o => o.Id));
         }
 
         [HttpPost]
@@ -124,7 +124,7 @@ namespace YCReservations.Controllers
         {
             var current = _context.Users.Single(u => u.Email == User.Identity.Name);
             var MyRes = _context.Reservations.Where(u => u.UserId == current.Id).Include(t => t.ReservationType).ToList();
-            return View(MyRes.OrderBy(o => o.Id));
+            return View(MyRes.OrderByDescending(o => o.Id));
         }
     }
 }

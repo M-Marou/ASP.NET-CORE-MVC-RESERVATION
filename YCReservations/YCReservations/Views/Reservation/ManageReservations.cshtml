@@ -36,7 +36,7 @@
                 }
                 else if (reservation.Status == true)
                 {
-                    <td class="text-success">Approved</td>
+                    <td class="text-primary">Approved</td>
                 }
                 else
                 {
@@ -48,8 +48,8 @@
 
                 <td style="width: 210px;">
                     <form method="post" asp-action="Delete" asp-route-id="@reservation.Id">
-                        <button asp-action="Approve" asp-route-id="@reservation.Id" type="submit" value="1" class="btn btn-success btn-sm">Approve</button>
-                        <button asp-action="Decline" asp-route-id="@reservation.Id" class="btn btn-danger btn-sm">Decline</button>
+                        <button asp-action="Approve" asp-route-id="@reservation.Id" type="submit" value="1" class="btn btn-outline-primary btn-sm">Approve</button>
+                        <button asp-action="Decline" asp-route-id="@reservation.Id" class="btn btn-outline-danger btn-sm">Decline</button>
                         <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure would you like to delete this reservation!')">Delete</button>
                     </form>
                 </td>
@@ -60,8 +60,8 @@
     </table>
 
     <div class="my-5 text-center">
-        <a asp-action="Book" asp-controller="Reservation">Make new reservation</a> |
-        <a asp-action="index" asp-controller="Home">Back to Home</a>
+        <a asp-action="Book" class="btn btn-outline-primary" asp-controller="Reservation">Make New Reservation</a> |
+        <a asp-action="index" class="btn btn-outline-dark" asp-controller="Home">Back to Home</a>
     </div>
 
 </div>

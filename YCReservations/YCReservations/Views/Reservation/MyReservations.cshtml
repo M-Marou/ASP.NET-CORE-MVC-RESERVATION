@@ -5,9 +5,8 @@
     ViewBag.Title = "MY RESERVATIONS";
 }
 
-<div class="my-5 text-left">
+<div class="text-primary py-3">
     <h3> MY RESERVATIONS </h3>
-    <hr />
 </div>
 
 <div class="my-5">
@@ -35,7 +34,7 @@
                 }
                 else if (reservation.Status == true)
                 {
-                    <td class="text-success">Approved</td>
+                    <td class="text-primary">Approved</td>
                 }
                 else
                 {
@@ -50,8 +49,8 @@
     </table>
 
     <div class="my-5 text-center">
-        <a asp-action="Book" asp-controller="Reservation">Make new reservation</a> |
-        <a asp-action="index" asp-controller="Home">Back to Home</a>
+        <a asp-action="Book" class="btn btn-outline-primary" asp-controller="Reservation">Make New Reservation</a> |
+        <a asp-action="index" class="btn btn-outline-dark" asp-controller="Home">Back to Home</a>
     </div>
 
 </div>

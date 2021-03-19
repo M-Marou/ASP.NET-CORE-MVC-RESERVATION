@@ -19,6 +19,8 @@ namespace YCReservations.Models
 
         public int NumberOfPeople { get; set; }
 
+        public int ResCounter { get; set; }
+
         public ICollection<Reservations> Reservations { get; set; }
     }
 }

@@ -1,33 +1,35 @@
 ﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
 
 @{
-    ViewBag.Title = "All Roles";
+    ViewBag.Title = "ADMIN || ALL ROLES";
 }
 
 <h1>All Roles</h1>
 
-    <a asp-action="CreateRole" class="btn btn-primary">Create new role</a>
+    <a asp-action="CreateRole" class="btn btn-outline-primary">Create new role</a>
     <hr />
-    @foreach (var role in Model)
-    {
-        <div class="card mb-3">
-            <div class="card-header">
-                Role Id : @role.Id
+    <div class="card-deck">
+        @foreach (var role in Model)
+        {
+            <div class="card mb-3">
+                <div class="card-header">
+                    Role Id : @role.Id
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@role.Name</h5>
+                </div>
+                <div class="card-footer">
+                    @*<form method="post" asp-controller="Admin" asp-action="Delete">
+                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@role.Id">Update</a>
+                        <button class="btn btn-danger" type="submit" asp-route-id="@role.Id">Delete</button>
+                    </form>*@
+                    <form method="post" asp-action="Delete" asp-controller="Admin" asp-route-id="@role.Id">
+                        <a class="btn btn-primary text-white btn-sm" asp-action="Edit" asp-controller="Admin" asp-route-id="@role.Id">Update</a>
+                        <button type="submit" class="btn btn-outline-dark btn-sm" onclick="return confirm('Are you sure would you like to delete this role!')">Delete</button>
+                    </form>
+                </div>
             </div>
-            <div class="card-body">
-                <h5 class="card-title">@role.Name</h5>
-            </div>
-            <div class="card-footer">
-                @*<form method="post" asp-controller="Admin" asp-action="Delete">
-                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@role.Id">Update</a>
-                    <button class="btn btn-danger" type="submit" asp-route-id="@role.Id">Delete</button>
-                </form>*@
-                <form method="post" asp-action="Delete" asp-controller="Admin" asp-route-id="@role.Id">
-                    <a class="btn btn-primary text-white btn-sm" asp-action="Edit" asp-controller="Admin" asp-route-id="@role.Id">Update</a>
-                    <button type="submit" class="btn btn-dark btn-sm" onclick="return confirm('Are you sure would you like to delete this role!')">Delete</button>
-                </form>
-            </div>
-        </div>
-    }
+        }
+    </div>
 
 

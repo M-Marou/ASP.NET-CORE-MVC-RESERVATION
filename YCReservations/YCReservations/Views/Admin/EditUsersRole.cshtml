@@ -2,7 +2,7 @@
 @model List<YCReservations.Models.ViewModels.EditUsersRoleViewModel>
 
 @{
-    ViewBag.Title = " Edit Role Users";
+    ViewBag.Title = " ADMIN || EDIT USERS ROLE";
 }
 
 <div class="my-5">
@@ -26,7 +26,7 @@
                 }
             </div>
             <div class="card-footer">
-                <a asp-action="Edit" asp-route-id="@ViewBag.RoleId" class="btn btn-primary mx-2">Back To Role</a>
+                <a asp-action="Edit" asp-route-id="@ViewBag.RoleId" class="btn btn-outline-primary mx-2">Back To Role</a>
                 <button class="btn btn-dark">Update</button>
                 <br />
                 <div class="text text-danger" asp-validation-summary="All"></div>

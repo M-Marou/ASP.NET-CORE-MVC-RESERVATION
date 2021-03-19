@@ -2,12 +2,11 @@
 
 @{
     int counter = 1;
-    ViewBag.Title = "List Users";
+    ViewBag.Title = "ADMIN || MANAGE USERS";
 }
 
-<div class="my-5 text-left">
-    <h2> List of Users </h2>
-    <hr />
+<div class="text-primary py-3">
+    <h2> MANAGE USERS </h2>
 </div>
 
 <div class="my-5">
@@ -30,9 +29,9 @@
                     <td>@user.LastName</td>
                     <td>@user.Email</td>
 
-                    <td>
+                    <td style="width:150px;">
                         <form method="post" asp-action="DeleteUser" asp-route-id="@user.Id">
-                            <a class="btn btn-primary text-white mx-2 btn-sm w-50" asp-action="EditUser" asp-controller="Admin" asp-route-id="@user.Id">Update</a>
+                            <a class="btn btn-outline-primary btn-sm" asp-action="EditUser" asp-controller="Admin" asp-route-id="@user.Id">Update</a>
                             <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure would you like to delete this user!')">Delete</button>
                         </form>
 
@@ -44,8 +43,8 @@
     </table>
 
     <div class="my-5 text-center">
-        <a asp-action="register" asp-controller="Account">Add User</a> |
-        <a asp-action="index" asp-controller="Home">Back to Home</a>
+        <a asp-action="register" class="btn btn-outline-primary" asp-controller="Account">Create New User</a> |
+        <a asp-action="index" class="btn btn-outline-dark" asp-controller="Home">Back to Home</a>
     </div>
 
 </div>

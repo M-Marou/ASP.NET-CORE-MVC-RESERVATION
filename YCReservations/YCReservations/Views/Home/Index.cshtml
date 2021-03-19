@@ -25,13 +25,13 @@
     @if (SignInManager.IsSignedIn(User) && User.IsInRole("Learner"))
     {
         <div class="text-center" style="margin-top:20px; z-index:1000;">
-            <a type="button" class="btn btn-outline-primary" asp-action="Book" asp-controller="Reservation">MAKE A RESERVATION</a>
+            <a type="button" class="btn btn-outline-primary" asp-action="Book" asp-controller="Reservation">Make a Reservation</a>
         </div>
     }
     else if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
     {
         <div class="text-center" style="margin-top:20px; z-index:1000;">
-            <a type="button" class="btn btn-outline-primary" asp-action="ManageReservations" asp-controller="Reservation">MANAGE RESERVATIONS</a>
+            <a type="button" class="btn btn-outline-primary" asp-action="ManageReservations" asp-controller="Reservation">Manage Reservations</a>
         </div>
     }
     
