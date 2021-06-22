@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using YCReservations.Models;
 using YCReservations.Models.ViewModels;
+using YCReservations.Services;
 
 namespace YCReservations.Controllers
 {
@@ -19,12 +20,16 @@ namespace YCReservations.Controllers
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
 
-        public ReservationController(AppDbContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        private readonly IReservationTypeService _ReservationTypeService;
+
+        public ReservationController(IReservationTypeService reservationTypeService)
         {
-            _context = context;
-            this.userManager = userManager;
-            this.signInManager = signInManager;
+            //_context = context;
+            //this.userManager = userManager;
+            //this.signInManager = signInManager;
+            _ReservationTypeService = reservationTypeService;
         }
+
 
         [HttpGet]
         public IActionResult Book()
@@ -125,6 +130,22 @@ namespace YCReservations.Controllers
             var current = _context.Users.Single(u => u.Email == User.Identity.Name);
             var MyRes = _context.Reservations.Where(u => u.UserId == current.Id).Include(t => t.ReservationType).ToList();
             return View(MyRes.OrderByDescending(o => o.Id));
+        }
+
+
+        
+
+        [HttpGet(nameof(GetReservationTypebyId))]
+        public async Task<string> GetReservationTypebyId(int ResTypeID)
+        {
+            var result = await _ReservationTypeService.GetReservationTypebyId(ResTypeID);
+            return result;
+        }
+        [HttpGet(nameof(GetReservationTypeDetails))]
+        public async Task<ReservationType> GetReservationTypeDetails(int ResTypeID)
+        {
+            var result = await _ReservationTypeService.GetReservationTypeDetails(ResTypeID);
+            return result;
         }
     }
 }
